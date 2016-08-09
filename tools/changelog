@@ -16,7 +16,7 @@ touch $Changelog
 # Print something to build output
 echo ${bldppl}"Generating changelog..."${txtrst}
 
-for i in $(seq 8);
+for i in $(seq 14);
 do
 export After_Date=`date --date="$i days ago" +%m-%d-%Y`
 k=$(expr $i - 1)
@@ -35,4 +35,5 @@ done
 sed -i 's/project/   */g' $Changelog
 
 cp $Changelog $OUT/system/etc/
+cp $Changelog $OUT/
 rm $Changelog
