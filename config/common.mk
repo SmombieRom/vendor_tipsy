@@ -92,12 +92,16 @@ PRODUCT_PACKAGES += \
     SlimLauncher \
     BluetoothExt \
     LockClock \
+    OmniStyle \
     OmniSwitch \
     DashClock \
     KernelAdiutor \
     masquerade
 
 #    SlimFileManager removed until updated
+
+## Slim DayNight theming overlays
+include vendor/tipsy/overlays/overlays.mk
 
 # Extra tools
 PRODUCT_PACKAGES += \
@@ -108,6 +112,16 @@ PRODUCT_PACKAGES += \
     ntfsfix \
     ntfs-3g
 
+# Custom off-mode charger
+ifneq ($(WITH_CM_CHARGER),false)
+PRODUCT_PACKAGES += \
+    charger_res_images \
+    cm_charger_res_images \
+    font_log.png \
+    libhealthd.cm
+endif
+
+# ExFAT support
 WITH_EXFAT ?= true
 ifeq ($(WITH_EXFAT),true)
 TARGET_USES_EXFAT := true
@@ -168,8 +182,8 @@ vendor/tipsy/prebuilt/common/app/adaway.apk:system/app/adaway.apk
 # Versioning System
 # tipsyM first version.
 PRODUCT_VERSION_MAJOR = 6.0.1
-PRODUCT_VERSION_MINOR = frunk
-PRODUCT_VERSION_MAINTENANCE = v4.6
+PRODUCT_VERSION_MINOR = Vino
+PRODUCT_VERSION_MAINTENANCE = v4.9
 ifdef TIPSY_BUILD_EXTRA
     TIPSY_POSTFIX := $(TIPSY_BUILD_EXTRA)
 endif
